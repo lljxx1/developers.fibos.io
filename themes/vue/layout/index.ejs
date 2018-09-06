@@ -1,0 +1,131 @@
+<div class="sidebar">
+  <div class="sidebar-inner-index">
+    <ul class="main-menu">
+      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+    </ul>
+  </div>
+</div>
+
+<div id="hero">
+  <div class="inner">
+    <div class="left">
+      <!-- <img class="hero-logo" src="<%- url_for("/images/logo.png") %>" alt="vue logo"> -->
+    </div><div class="right">
+      <h2 class="vue">Vue.js</h2>
+      <h1>
+        FIBOS<br>
+      </h1>
+      <p>
+        <a class="button white" href="<%- url_for("/v2/guide/") %>">起步</a>
+        <a class="button gray has-icon" href="https://github.com/fibosio" target="_blank">
+          <%- partial('icons/github-dark') %>
+          GITHUB</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="special-sponsor">
+  <!-- <h3>特别赞助</h3>
+  <a href="https://stdlib.com/" target="_blank">
+    <img src="/images/stdlib.png" style="width:160px" alt="Standard Library Logo">
+    <br>
+    <span>Function as a Service Platform and Library</span>
+  </a> -->
+</div>
+
+<div id="highlights">
+  <div class="inner">
+    <div class="point">
+      <h2>开发、部署速度超快</h2>
+      <p>学习门槛低、环境部署门槛低；迭代速度快；无需编译；代码可读性强；兼容 npm 生态。相比其他基于 C++ 或其他语言的区块链开发工作，之前没有接触过区块链项目的开发者，通常可以在 1 小时之内实现第一个可用的区块链项目。</p>
+    </div>
+
+    <div class="point">
+      <h2>非常节省资源</h2>
+      <p>节省存储 ram ，节省执行 ram ，节省 CPU 。经过测算，部署同等业务合约，使用 FIBOS 开发， ram 的占用是 EOS 的 10% ，帮助开发者以极低的投入快速进入区块链开发市场。</p>
+    </div>
+
+    <div class="point">
+      <h2>安全可控制</h2>
+      <p>
+        独立沙箱实现 global 级别隔离和虚拟文件系统，具备超时检测功能。经过 FIBJS 项目 6 年开发经验以及 FIBOS 项目 6 个月的持续开发和测试， FIBOS 在开发和生产环境中均保持了安全与稳定，为开发者节约了大量时间。
+      </p>
+    </div>
+
+    <div class="point">
+      <h2>合约代码可审计</h2>
+      <p>
+        使用 JavaScript 作为开发语言，合约开源，任何人可以审计代码和逻辑，避免 WASM 合约经过编译后不可审计的问题。
+      </p>
+    </div>
+
+
+    <div class="point">
+      <h2>稳定且流动的通证体系</h2>
+      <p>
+        基于并发展了 Bancor 协议的智能通证体系，实现通证发行、交易、兑换等功能。利用 FIBOS 方案内置的 FO 智能通证，开发者可以集中精力开发 DApp，而不用担心通证发行和交易逻辑。
+      </p>
+    </div>
+
+    <div class="point">
+      <h2>一步到位全套解决方案</h2>
+      <p>
+        FIBOS 为开发者提供了开发工具、通证协议和开发者服务，开发者可利用 FIBOS 一步进入区块链开发和发布。此外，FIBOS 基金会还将运营开发者社区，直接为开发者提供咨询、培训和交流等后续服务。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="sponsors">
+  <div class="inner">
+    <%- partial('partials/sponsors') %>
+  </div>
+</div>
+
+<div id="footer">
+  <p>
+    <a class="social-icon" href="https://github.com/fibosio" target="_blank">
+      <%- partial('icons/github') %>
+    </a>
+  </p>
+  Copyright &copy; <%- new Date().getFullYear() %></p>
+</div>
+
+<div id="video-modal" class="modal">
+  <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"></div>
+</div>
+
+<script>
+(function () {
+  var topScrolled = false
+  var sponsors = document.getElementById('sponsors')
+  var sponsorTop = sponsors.offsetTop
+  var sponsorActive = false
+
+  window.addEventListener('resize', function () {
+    sponsorTop = sponsors.offsetTop
+  })
+
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 165 && !topScrolled) {
+      topScrolled = true
+      document.getElementById('mobile-bar').classList.remove('top')
+    } else if (window.pageYOffset <= 165 && topScrolled) {
+      topScrolled = false
+      document.getElementById('mobile-bar').classList.add('top')
+    }
+    if (window.pageYOffset > sponsorTop - 100) {
+      if (!sponsorActive) {
+        sponsorActive = true
+        sponsors.classList.add('active')
+      }
+    } else {
+      if (sponsorActive) {
+        sponsorActive = false
+        sponsors.classList.remove('active')
+      }
+    }
+  })
+})()
+</script>
